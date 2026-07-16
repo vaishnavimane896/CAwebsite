@@ -14,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-  // consultation
+
   // Handle scroll animation effect for navbar background scaling
   useEffect(() => {
     const handleScroll = () => {
@@ -28,8 +28,8 @@ export default function Navbar() {
     <header 
       className={`sticky top-0 z-50 w-full transition-all duration-500 ease-in-out ${
         scrolled 
-          ? "bg-surface-card/80 backdrop-blur-xl h-16 border-b border-border/50 shadow-sm" 
-          : "bg-surface-card/0 h-20"
+          ? "bg-card/80 backdrop-blur-xl h-16 border-b border-border/50 shadow-xs" 
+          : "bg-transparent h-20"
       }`}
     >
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 h-full flex items-center justify-between">
@@ -43,14 +43,14 @@ export default function Navbar() {
             <span className="font-heading font-black text-base tracking-tight text-primary transition-all duration-300 group-hover:text-secondary">
               Sterling CA
             </span>
-            <span className="text-[9px] tracking-[0.2em] font-bold text-slate-600 uppercase transition-all duration-300 group-hover:translate-x-0.5">
+            <span className="text-[9px] tracking-[0.2em] font-bold text-muted-foreground uppercase transition-all duration-300 group-hover:translate-x-0.5">
               Secure Growth
             </span>
           </div>
         </Link>
 
         {/* Animated Slide-Line Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-surface/60 border border-border/60 p-1 rounded-full backdrop-blur-md">
+        <nav className="hidden md:flex items-center gap-1 bg-muted/60 border border-border/60 p-1 rounded-full backdrop-blur-md">
           {navLinks.map((link) => {
             const isActive = pathname === link.to;
             return (
@@ -59,8 +59,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`relative text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 ease-out overflow-hidden group/link ${
                   isActive
-                    ? "text-primary-foreground bg-primary shadow-sm"
-                    : "text-slate-600 hover:text-primary"
+                    ? "text-primary-foreground bg-primary shadow-xs"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 <span className="relative z-10">{link.label}</span>
@@ -76,41 +76,36 @@ export default function Navbar() {
 
         {/* Dynamic Action Buttons Group */}
         <div className="hidden md:flex items-center gap-4">
-          {/* <Link
-            to="/contact"
-            className="text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-primary transition-colors py-2 relative group"
-          >
-            <span>Call Desk</span>
-            <span className="absolute bottom-1 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full" />
-          </Link> */}
-          
           <Button 
+            asChild
             size="sm" 
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-heading font-bold text-xs uppercase tracking-wider px-6 h-10 rounded-xl relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 group"
+            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-heading font-bold text-xs uppercase tracking-wider px-6 h-10 rounded-xl relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 group cursor-pointer"
           >
-            <span className="flex items-center gap-2">
-              <Link to="/consaltation" className="relative z-10">Book Consultation</Link>
-              <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </span>
+            <Link to="/consaltation">
+              <span className="flex items-center gap-2">
+                <span>Book Consultation</span>
+                <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </span>
+            </Link>
           </Button>
         </div>
 
         {/* Magnetic Style Hamburger Trigger */}
         <button 
-          className="md:hidden p-2.5 text-primary hover:bg-surface border border-border/40 rounded-xl transition-all duration-300 active:scale-95" 
+          className="md:hidden p-2.5 text-primary hover:bg-muted border border-border/40 rounded-xl transition-all duration-300 active:scale-95 cursor-pointer" 
           onClick={() => setOpen(!open)}
           aria-label="Toggle Menu"
         >
           <div className="relative w-5 h-5 flex items-center justify-center">
-            <X size={20} className={`absolute transition-all duration-500 ease-spring ${open ? "rotate-0 opacity-100 scale-100" : "rotate-90 opacity-0 scale-50"}`} />
-            <Menu size={20} className={`absolute transition-all duration-500 ease-spring ${!open ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-50"}`} />
+            <X size={20} className={`absolute transition-all duration-500 ease-in-out ${open ? "rotate-0 opacity-100 scale-100" : "rotate-90 opacity-0 scale-50"}`} />
+            <Menu size={20} className={`absolute transition-all duration-500 ease-in-out ${!open ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-50"}`} />
           </div>
         </button>
       </div>
 
       {/* Spring-Animated Mobile Dropdown Overlay */}
       <div 
-        className={`md:hidden absolute top-full left-0 w-full bg-surface-card/95 backdrop-blur-2xl border-b border-border shadow-2xl transition-all duration-500 ease-in-out origin-top ${
+        className={`md:hidden absolute top-full left-0 w-full bg-card/95 backdrop-blur-2xl border-b border-border shadow-2xl transition-all duration-500 ease-in-out origin-top ${
           open 
             ? "opacity-100 transform scale-y-100 pointer-events-auto" 
             : "opacity-0 transform scale-y-0 pointer-events-none"
@@ -129,11 +124,11 @@ export default function Navbar() {
                   className={`text-base font-heading font-bold p-4 rounded-xl flex items-center justify-between border transition-all duration-300 ${
                     isActive 
                       ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/10 translate-x-2" 
-                      : "bg-surface/50 border-border/40 text-slate-600 hover:text-primary hover:bg-surface hover:translate-x-1"
+                      : "bg-muted/50 border-border/40 text-muted-foreground hover:text-primary hover:bg-muted hover:translate-x-1"
                   }`}
                 >
                   <span>{link.label}</span>
-                  <ArrowUpRight size={16} className={`transition-transform duration-300 ${isActive ? "opacity-100 rotate-45" : "opacity-30 group-hover:opacity-100"}`} />
+                  <ArrowUpRight size={16} className={`transition-transform duration-300 ${isActive ? "opacity-100 rotate-45" : "opacity-30"}`} />
                 </Link>
               );
             })}
@@ -143,19 +138,14 @@ export default function Navbar() {
 
           {/* Mobile Navigation Interactive Actions */}
           <div className="flex flex-col gap-3">
-            {/* <Button 
-              variant="outline"
-              className="w-full bg-surface-card border-border/80 text-slate-900 font-heading font-bold text-xs uppercase tracking-wider py-5 rounded-xl transition-all hover:bg-surface"
-            >
-              Secure Hotline
-            </Button> */}
-            <a href="/consaltation" className="w-full">
             <Button 
-              className="bg-secondary text-secondary-foreground font-heading font-bold text-xs uppercase tracking-wider w-full py-5 rounded-xl shadow-lg shadow-secondary/10 active:scale-[0.99] transition-transform cursor-pointer"
+              asChild
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-bold text-xs uppercase tracking-wider w-full py-5 rounded-xl shadow-lg shadow-secondary/10 active:scale-[0.99] transition-transform cursor-pointer"
             >
-              Book Corporate Advisory
+              <Link to="/consaltation" onClick={() => setOpen(false)}>
+                Book Corporate Advisory
+              </Link>
             </Button>
-            </a>
           </div>
         </div>
       </div>

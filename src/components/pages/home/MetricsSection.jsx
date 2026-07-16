@@ -16,7 +16,7 @@ export default function MetricsSection() {
           <p className="font-heading font-bold text-3xl md:text-4xl text-primary tabular-nums">
             {stat.value}
           </p>
-          <p className="text-sm text-slate-500 mt-1">{stat.label}</p>
+          <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
         </motion.div>
       ))}
     </div>

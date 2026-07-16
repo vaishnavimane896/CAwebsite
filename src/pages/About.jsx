@@ -16,14 +16,14 @@ export default function About() {
   );
 
   return (
-    <div className="bg-slate-50/50 min-h-screen relative">
+    <div className="bg-background min-h-screen relative">
       {/* SECTION 1: HERO & STATS */}
       <HeroSection latestMilestone={latestMilestone} />
 
       {/* SECTION 2: MILESTONES TIMELINE */}
       <TimelineSection milestones={chronologicalMilestones} />
 
-      {/* SECTION 3: LEADERSHIP TEAM (Matches image_8c4619.jpg) */}
+      {/* SECTION 3: LEADERSHIP TEAM */}
       <LeadershipSection
         leadership={leadership}
         selectedPerson={selectedPerson}
@@ -32,23 +32,23 @@ export default function About() {
 
       {/* SECTION 4: GOVERNANCE FRAMEWORK */}
       <section className="max-w-[1280px] mx-auto px-4 md:px-12 py-8 pb-24">
-        <Card className="shadow-sm hover:shadow-md transition-shadow">
+        <Card className="shadow-sm hover:shadow-md transition-shadow bg-card border-border">
           <CardContent className="p-8 flex flex-col md:flex-row gap-6">
-            <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200">
-              <Gavel size={20} className="text-slate-900" />
+            <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center shrink-0 border border-border">
+              <Gavel size={20} className="text-foreground" />
             </div>
             <div>
-              <h3 className="font-heading font-semibold text-lg text-slate-900 mb-2">
+              <h3 className="font-heading font-semibold text-lg text-foreground mb-2">
                 Governance Framework
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Sterling CA Firm operates under a robust governance framework
                 that ensures absolute data integrity and client confidentiality.
                 Our practices are strictly aligned with the regulatory standards
                 established by the Institute of Chartered Accountants of India
                 (ICAI) and SEBI regulations for corporate entities.
               </p>
-              <p className="text-sm text-slate-600 leading-relaxed mt-3">
+              <p className="text-sm text-muted-foreground leading-relaxed mt-3">
                 We maintain international IFRS alignment across all cross-border
                 engagements, ensuring that our audit and advisory services meet
                 global benchmarks for professional ethics, independence, and

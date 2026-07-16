@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Accordion({ children, className = "" }) {
-  return <div className={className}>{children}</div>;
+  return <div className={cn("space-y-1", className)}>{children}</div>;
 }
 
 export function AccordionItem({ children, className = "" }) {
   const [open, setOpen] = useState(false);
-
   const items = Array.isArray(children) ? children : [children];
 
   return (
-    <div className={`border-b ${className}`}>
+    <div className={cn("border-b border-border", className)}>
       {items.map((child, index) =>
         child?.type?.displayName === "AccordionTrigger"
           ? (
@@ -43,14 +43,18 @@ export function AccordionTrigger({
   return (
     <button
       onClick={() => setOpen(!open)}
-      className={`w-full flex items-center justify-between py-4 font-medium ${className}`}
+      className={cn(
+        "w-full flex items-center justify-between py-4 text-sm font-medium text-foreground transition-all hover:underline outline-none focus-visible:text-primary",
+        className
+      )}
     >
       {children}
       <ChevronDown
-        className={`transition-transform ${
-          open ? "rotate-180" : ""
-        }`}
-        size={18}
+        className={cn(
+          "text-muted-foreground transition-transform duration-200 shrink-0",
+          open && "rotate-180"
+        )}
+        size={16}
       />
     </button>
   );
@@ -66,7 +70,7 @@ export function AccordionContent({
   if (!open) return null;
 
   return (
-    <div className={`pb-4 text-sm text-slate-600 ${className}`}>
+    <div className={cn("pb-4 text-sm text-muted-foreground leading-relaxed animate-in fade-in-50 duration-200", className)}>
       {children}
     </div>
   );
