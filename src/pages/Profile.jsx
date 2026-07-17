@@ -9,13 +9,13 @@ import { leadership } from "@/data/servicesData";
 import  ProfileSidebar from "../components/pages/profile/ProfileSidebar";
 import ProfileDetails from "../components/pages/profile/ProfileDetails";
 import ProfileCta from "../components/pages/profile/ProfileCta";
-import OtherMembers from " ../components/pages/profile/OtherMembers";
+import OtherMembers from "../components/pages/profile/OtherMembers";
 
 function slugify(name) {
   return encodeURIComponent(name.toLowerCase().replace(/\s+/g, "-"));
 }
 
-export default function Profile() {
+export default function Profile() { 
   const { slug } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
