@@ -24,7 +24,11 @@ export default function BookingFaq() {
           </p>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-3">
+        {/* 
+          Using type="single" ensures only one item can be expanded at a time.
+          collapsible allows an open item to be closed by clicking its trigger again.
+        */}
+        <Accordion type="single" collapsible className="space-y-3 w-full">
           {bookingFaq.map((item, i) => (
             <AccordionItem
               key={item.q}
